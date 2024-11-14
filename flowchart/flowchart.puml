@@ -1,0 +1,80 @@
+@startuml sepeda
+title Flowchart untuk Aplikasi Toko Simpan-Pinjam dan Jual-Beli Sepeda
+
+start
+
+:Buka Aplikasi;
+
+:Masukkan Email dan Password;
+
+if (Email dan Password Valid?) then (Ya)
+    if (Admin?) then (Ya)
+        :Login Sebagai Admin;
+        :Akses Manajemen Toko;
+        :Pilih Aksi;
+        if (Aksi = Tambah Transaksi) then (Tambah Transaksi)
+            :Masukkan Detail Barang atau Jasa;
+            :Proses Transaksi;
+            :Simpan Transaksi;
+        elseif (Aksi = Edit Stok) then (Edit Stok)
+            :Pilih Stok yang Akan Diedit;
+            :Perbarui Detail Stok;
+            :Simpan Perubahan;
+        elseif (Aksi = Hapus Stok) then (Hapus Stok)
+            :Pilih Stok yang Akan Dihapus;
+            :Konfirmasi Penghapusan;
+        if (Aksi = Tambah Member) then (Tambah Member)
+            :Masukkan Detail Member;
+            :Simpan Member;
+        elseif (Aksi = Edit Member) then (Edit Member)
+            :Pilih Member yang Akan Diedit;
+            :Perbarui Detail Member;
+            :Simpan Perubahan;
+        elseif (Aksi = Hapus Member) then (Hapus Member)
+            :Pilih Member yang Akan Dihapus;
+            :Konfirmasi Penghapusan;
+        if (Aksi = Tambah Simpan-Pinjam) then (Tambah Simpan-Pinjam)
+            :Masukkan Detail Simpan-Pinjam;
+            :Simpan Data;
+        elseif (Aksi = Edit Simpan-Pinjam) then (Edit Simpan-Pinjam)
+            :Pilih Simpan-Pinjam yang Akan Diedit;
+            :Perbarui Detail Simpan-Pinjam;
+            :Simpan Perubahan;
+        endif
+        :Logout;
+    elseif (Kasir?) then (Ya)
+        :Login Sebagai Kasir;
+        :Akses Manajemen Transaksi;
+        :Pilih Aksi;
+        if (Aksi = Tambah Transaksi) then (Tambah Transaksi)
+            :Masukkan Detail Barang atau Jasa;
+            :Proses Transaksi;
+            :Simpan Transaksi;
+        :Logout;
+    elseif (Gudang?) then (Ya)
+        :Login Sebagai Gudang;
+        :Akses Manajemen Gudang;
+        :Pilih Aksi;
+        elseif (Aksi = Edit Stok) then (Edit Stok)
+            :Pilih Stok yang Akan Diedit;
+            :Perbarui Detail Stok;
+            :Simpan Perubahan;
+        elseif (Aksi = Hapus Stok) then (Hapus Stok)
+            :Pilih Stok yang Akan Dihapus;
+            :Konfirmasi Penghapusan;
+        endif
+        :Logout;
+    else (Customer)
+        :Login Sebagai Customer;
+        :Akses Tampilan Member;
+        :Tampilkan Detail Simpan-Pinjam (Nomor Peminjaman, Tanggal, Waktu, Durasi, Barang, Ruang Penyimpanan);
+        :Logout;
+    endif
+else (Tidak)
+    :Tampilkan "Email atau Password Tidak Valid";
+    :Kembali ke Halaman Login;
+endif
+
+stop
+
+@enduml

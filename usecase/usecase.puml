@@ -1,0 +1,69 @@
+@startuml jadwal
+actor Admin
+actor Kasir
+actor Gudang
+actor Customer
+
+usecase "Input Email dan Password" as UC1
+usecase "Cek Kredensial" as UC2
+usecase "Login Gagal" as UC3
+usecase "Login Admin" as UC4
+usecase "Login Kasir" as UC5
+usecase "Login Gudang" as UC6
+usecase "Login Customer" as UC7
+usecase "Akses Manajemen Transaksi" as UC8
+usecase "Tambah Transaksi" as UC9
+usecase "Akses Manajemen Stok" as UC10
+usecase "Edit Stok" as UC11
+usecase "Hapus Stok" as UC12
+usecase "Akses Manajemen Member" as UC13
+usecase "Tambah Member" as UC14
+usecase "Edit Member" as UC15
+usecase "Hapus Member" as UC16
+usecase "Akses Manajemen Simpan-Pinjam" as UC17
+usecase "Tambah Simpan-Pinjam" as UC18
+usecase "Edit Simpan-Pinjam" as UC19
+usecase "Akses Tampilan Member" as UC20
+usecase "Tampilkan Detail Simpan-Pinjam" as UC21
+usecase "Logout" as UC22
+
+Admin --> UC1
+Kasir --> UC1
+Gudang --> UC1
+Customer --> UC1
+UC1 --> UC2
+UC2 --> UC3: tidak valid
+UC3 --> UC1
+
+UC1 --> UC4: valid
+UC4 --> UC8
+UC8 --> UC9: include
+UC4 --> UC10
+UC10 --> UC11: include
+UC10 --> UC12: include
+UC4 --> UC13
+UC13 --> UC14: include
+UC13 --> UC15: include
+UC13 --> UC16: include
+UC4 --> UC17
+UC17 --> UC18: include
+UC17 --> UC19: include
+UC4 --> UC22 : extend
+
+UC1 --> UC5: valid
+UC5 --> UC8
+UC8 --> UC9: include
+UC5 --> UC22 : extend
+
+UC1 --> UC6: valid
+UC6 --> UC10
+UC10 --> UC11: include
+UC10 --> UC12: include
+UC6 --> UC22 : extend
+
+UC1 --> UC7: valid
+UC7 --> UC20
+UC20 --> UC21: include
+UC7 --> UC22 : extend
+
+@enduml
