@@ -1,0 +1,7 @@
+sampleapp/db/data/ibdata1
+sampleapp/db/data/ib_logfile1
+sampleapp/db/data/ib_logfile0
+
+echo "sampleapp/db/data/ibdata1" >> .gitignore
+echo "sampleapp/db/data/ib_logfile1" >> .gitignore
+echo "sampleapp/db/data/ib_logfile0" >> .gitignore
