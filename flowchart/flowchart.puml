@@ -1,5 +1,5 @@
-@startuml sepeda
-title Flowchart untuk Aplikasi Toko Simpan-Pinjam dan Jual-Beli Sepeda
+@startuml fakultas
+title Jadwal dan Nilai Mahasiswa Fakultas
 
 start
 
@@ -10,64 +10,38 @@ start
 if (Email dan Password Valid?) then (Ya)
     if (Admin?) then (Ya)
         :Login Sebagai Admin;
-        :Akses Manajemen Toko;
+        :Akses Manajemen Perkuliahan;
         :Pilih Aksi;
-        if (Aksi = Tambah Transaksi) then (Tambah Transaksi)
-            :Masukkan Detail Barang atau Jasa;
-            :Proses Transaksi;
-            :Simpan Transaksi;
-        elseif (Aksi = Edit Stok) then (Edit Stok)
-            :Pilih Stok yang Akan Diedit;
-            :Perbarui Detail Stok;
-            :Simpan Perubahan;
-        elseif (Aksi = Hapus Stok) then (Hapus Stok)
-            :Pilih Stok yang Akan Dihapus;
-            :Konfirmasi Penghapusan;
-        if (Aksi = Tambah Member) then (Tambah Member)
-            :Masukkan Detail Member;
-            :Simpan Member;
-        elseif (Aksi = Edit Member) then (Edit Member)
-            :Pilih Member yang Akan Diedit;
-            :Perbarui Detail Member;
-            :Simpan Perubahan;
-        elseif (Aksi = Hapus Member) then (Hapus Member)
-            :Pilih Member yang Akan Dihapus;
-            :Konfirmasi Penghapusan;
-        if (Aksi = Tambah Simpan-Pinjam) then (Tambah Simpan-Pinjam)
-            :Masukkan Detail Simpan-Pinjam;
-            :Simpan Data;
-        elseif (Aksi = Edit Simpan-Pinjam) then (Edit Simpan-Pinjam)
-            :Pilih Simpan-Pinjam yang Akan Diedit;
-            :Perbarui Detail Simpan-Pinjam;
+        if (Aksi = Tambah Perkuliahan) then (Tambah Perkuliahan)
+            :Masukkan Detail Matakuliah dan Dosen;
+            :Simpan Perkuliahan;
+        else (Aksi = Edit Perkuliahan) then (Edit Perkuliahan)
+            :Pilih Perkuliahan yang Akan Diedit;
+            :Perbarui Detail Perkuliahan;
             :Simpan Perubahan;
         endif
         :Logout;
-    elseif (Kasir?) then (Ya)
-        :Login Sebagai Kasir;
-        :Akses Manajemen Transaksi;
+    elseif (Dosen?) then (Ya)
+        :Login Sebagai Dosen;
+        :Akses Manajemen Matakuliah;
         :Pilih Aksi;
-        if (Aksi = Tambah Transaksi) then (Tambah Transaksi)
-            :Masukkan Detail Barang atau Jasa;
-            :Proses Transaksi;
-            :Simpan Transaksi;
-        :Logout;
-    elseif (Gudang?) then (Ya)
-        :Login Sebagai Gudang;
-        :Akses Manajemen Gudang;
-        :Pilih Aksi;
-        elseif (Aksi = Edit Stok) then (Edit Stok)
-            :Pilih Stok yang Akan Diedit;
-            :Perbarui Detail Stok;
+        if (Aksi = Edit Materi) then (Edit Materi)
+            :Masukkan Detail Materi;
             :Simpan Perubahan;
-        elseif (Aksi = Hapus Stok) then (Hapus Stok)
-            :Pilih Stok yang Akan Dihapus;
-            :Konfirmasi Penghapusan;
+        else (Aksi = Edit Nilai) then (Edit Nilai)
+            :Pilih Nilai yang Akan Diedit;
+            :Perbarui Detail Perkuliahan;
+            :Simpan Perubahan;
         endif
         :Logout;
-    else (Customer)
-        :Login Sebagai Customer;
-        :Akses Tampilan Member;
-        :Tampilkan Detail Simpan-Pinjam (Nomor Peminjaman, Tanggal, Waktu, Durasi, Barang, Ruang Penyimpanan);
+    else (Mahasiswa)
+        :Login Sebagai Mahasiswa;
+        :Akses Tampilan Perkuliahan;
+        :Tampilkan Detail Matakuliah (ID Matakuliah, Matakuliah, Dosen, Waktu, Durasi, Ruang, Nilai);
+        if (Aksi = Tambah Matakuliah) then (Tambah Matakuliah)
+            :Pilih Matakuliah;
+            :Simpan Perubahan;
+        endif
         :Logout;
     endif
 else (Tidak)

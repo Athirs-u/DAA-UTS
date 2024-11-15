@@ -8,57 +8,48 @@ use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // Call individual seeders
+        // Call RoleSeeder first to create roles
+        $this->call([RoleSeeder::class]);
 
-        // Seed users
+        // Seed users after roles exist
         $this->seedUsers();
-        $this->callSeeders();
+        
+        // Additional seeders
+        $this->call([FakultasSeeder::class]);
     }
 
     private function seedUsers(): void
     {
-        if (!User::where('email', 'admin@admin.com')->exists()) {
-            $users = User::factory()->createmany([
-                [
-                    'name' => 'Admin',
-                    'email' => 'admin@admin.com',
-                    'password' => bcrypt('password'),
-                ],
-                [
-                    'name' => 'Customer',
-                    'email' => 'cst@admin.com',
-                    'password' => bcrypt('password'),
-                ],
-                [
-                    'name' => 'Gudang',
-                    'email' => 'gdg@admin.com',
-                    'password' => bcrypt('password'),
-                ],
-                [
-                    'name' => 'Kasir',
-                    'email' => 'ksr@admin.com',
-                    'password' => bcrypt('password'),
-                ],
+        $adminEmail = 'admin@admin.com';
+        if (! User::where('email', $adminEmail)->exists()) {
+            $admin = User::create([
+                'name' => 'Admin',
+                'email' => $adminEmail,
+                'password' => bcrypt('password'),
             ]);
-
-            foreach ($users as $user) {
-                if ($user->email == 'admin@admin.com') {
-                    $user->assignRole('super_admin');
-                    }
-                }
-            }
+            $admin->assignRole('super_admin');
         }
 
-            private function callSeeders(): void {
-                $this->call([
-                    RoleSeeder::class,
-                    TokoSeeder::class,
-                ]);
-
-            }
+        $mhsEmail = 'mhs@admin.com';
+        if (! User::where('email', $mhsEmail)->exists()) {
+            $mhs = User::create([
+                'name' => 'Mahasiswa',
+                'email' => $mhsEmail,
+                'password' => bcrypt('password'),
+            ]);
+            $mhs->assignRole('Mahasiswa');
         }
+
+        $mhsEmail = 'dsn@admin.com';
+        if (! User::where('email', $mhsEmail)->exists()) {
+            $mhs = User::create([
+                'name' => 'Dosen',
+                'email' => $mhsEmail,
+                'password' => bcrypt('password'),
+            ]);
+            $mhs->assignRole('Mahasiswa');
+        }
+    }
+}
